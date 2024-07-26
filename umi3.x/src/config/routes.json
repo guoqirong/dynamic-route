@@ -1,0 +1,11 @@
+[
+  {
+    "path": "/user",
+    "routes": [
+      { "path": "/user/add", "component": "/user/add" },
+      { "path": "/", "component": "/user" }
+    ]
+  },
+  { "path": "/menu", "component": "/menu" },
+  { "path": "/rule", "component": "/rule" }
+]
