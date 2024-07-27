@@ -1,15 +1,14 @@
-import { FunctionComponent, useState } from "react";
+import { FunctionComponent, Suspense, useState } from "react";
 import { MenuDataItem, PageContainer, ProLayout, ProSettings } from "@ant-design/pro-layout";
 import { Link } from "umi";
 
+
 interface LayoutCompProps {
-  route: any;
   routes: any;
 }
  
 const LayoutComp: FunctionComponent<LayoutCompProps> = (props) => {
-  const { route, routes } = props;
-  console.log(route, props)
+  const { routes } = props;
   const [settings, setSetting] = useState<Partial<ProSettings> | undefined>({
     fixSiderbar: true,
     title: '前端资源网',
@@ -34,7 +33,9 @@ const LayoutComp: FunctionComponent<LayoutCompProps> = (props) => {
       )}
       {...settings}
     >
-      <PageContainer>{props.children}</PageContainer>
+      <Suspense fallback={<div>Loading...</div>}>
+        <PageContainer>{props.children}</PageContainer>
+      </Suspense>
     </ProLayout>
   );
 }

@@ -2,8 +2,8 @@
   {
     "path": "/user",
     "routes": [
-      { "path": "/user/add", "component": "/user/add" },
-      { "path": "/", "component": "/user" }
+      { "path": "/user", "component": "/user" },
+      { "path": "/user/add", "component": "/user/add" }
     ]
   },
   { "path": "/menu", "component": "/menu" },
