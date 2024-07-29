@@ -94,22 +94,5 @@ export default function Layouts() {
         </Content>
       </Layout>
     </Layout>
-    // <div className={styles.navs}>
-    //   <ul>
-    //     <li>
-    //       <Link to="/">Home</Link>
-    //     </li>
-    //     <li>
-    //       <Link to="/user">User</Link>
-    //     </li>
-    //     <li>
-    //       <Link to="/menu">Menu</Link>
-    //     </li>
-    //     <li>
-    //       <Link to="/rule">Rule</Link>
-    //     </li>
-    //   </ul>
-    //   <Outlet />
-    // </div>
   );
 }
