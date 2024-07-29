@@ -5,7 +5,13 @@ export default defineConfig({
     type: 'none',
   },
   routes: [
-    { path: '/', wrappers: ['@/layouts'], component: '@/pages/index' },
+    { 
+      path: '/',
+      component: '@/layouts',
+      routes: [
+        { path: '/', component: '@/pages/index' }
+      ]
+    },
   ],
   fastRefresh: {},
   dynamicImport: {},

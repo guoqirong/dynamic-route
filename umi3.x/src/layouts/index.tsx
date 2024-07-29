@@ -1,30 +1,38 @@
-import { FunctionComponent, Suspense, useState } from "react";
+import { FunctionComponent, Suspense, useEffect, useState } from "react";
 import { MenuDataItem, PageContainer, ProLayout, ProSettings } from "@ant-design/pro-layout";
 import { Link } from "umi";
 
 
 interface LayoutCompProps {
-  routes: any;
+  route: any;
 }
  
 const LayoutComp: FunctionComponent<LayoutCompProps> = (props) => {
-  const { routes } = props;
+  const { route: { routes } } = props;
   const [settings, setSetting] = useState<Partial<ProSettings> | undefined>({
     fixSiderbar: true,
     title: '前端资源网',
   });
+  const [menuData, setMenuData] = useState<MenuDataItem[]>([]);
   // 菜单 loop
-  const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] =>
-    menus?.map(({ icon, routes, ...item }) => ({
+  const loopMenuItem = (menus: MenuDataItem[]): MenuDataItem[] => {
+    const menusData = menus.filter(item => !item?.meta?.hidden);
+    return menusData?.map(({ icon, routes, ...item }) => ({
       ...item,
-      name: item.path,
+      name: item?.meta?.title ?? item.path,
       // icon: icon && IconMap[icon as string],
       children: routes && loopMenuItem(routes),
     }));
+  };
+
+  useEffect(() => {
+    setMenuData(loopMenuItem(routes));
+  }, []);
+
   return (
     <ProLayout
       contentStyle={{height: 'calc(100vh - 48px)'}}
-      menuDataRender={() => loopMenuItem(routes)}
+      menuDataRender={() => menuData}
       headerHeight={0}
       menuItemRender={(item, dom: any) => (
         <Link to={item.path ?? '/'}>

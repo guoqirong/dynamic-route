@@ -1,11 +1,12 @@
 [
   {
-    "path": "/user",
+    "path": "/",
+    "meta": { "title": "用户管理" },
     "routes": [
-      { "path": "/user", "component": "/user" },
-      { "path": "/user/add", "component": "/user/add" }
+      { "path": "/user", "component": "/user", "meta": { "title": "用户列表" } },
+      { "path": "/user/add", "component": "/user/add", "meta": { "title": "添加用户", "hidden": true } }
     ]
   },
-  { "path": "/menu", "component": "/menu" },
-  { "path": "/rule", "component": "/rule" }
+  { "path": "/menu", "component": "/menu", "meta": { "title": "菜单列表" } },
+  { "path": "/rule", "component": "/rule", "meta": { "title": "权限列表" } }
 ]

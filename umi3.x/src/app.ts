@@ -5,9 +5,9 @@ let normalizedRoutes: any;
 // umi3.x 需要将 routes 选项从第一个参数中解构: patchRoutes({ routes }) {}
 export function patchRoutes({ routes }: any) {
   if (normalizedRoutes) {
-    const data = mergeRoutes(normalizedRoutes, routes);
-    console.log(data)
-		routes.push(...data);
+    const pageRouters = routes[0]['routes'];
+    const data = mergeRoutes(normalizedRoutes, pageRouters);
+		pageRouters.push(...data);
   }
 }
 
@@ -44,11 +44,6 @@ const mergeRoutes = (routes: any[], parentRoute: { path: any }) => {
         //   component.substr(component.indexOf('/') + 1)).default;
       })(route.component);
     }
-    route.wrappers = [
-      (() => {
-        return require('./layouts').default;
-      })()
-    ];
     if (route.routes) {
       route.routes = mergeRoutes(route.routes, route);
     }
