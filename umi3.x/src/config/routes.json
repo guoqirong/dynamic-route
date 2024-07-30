@@ -4,7 +4,8 @@
     "meta": { "title": "用户管理" },
     "routes": [
       { "path": "/user", "component": "/user", "meta": { "title": "用户列表" } },
-      { "path": "/user/add", "component": "/user/add", "meta": { "title": "添加用户", "hidden": true } }
+      { "path": "/user/add", "component": "/user/add", "meta": { "title": "添加用户", "hidden": true } },
+      { "path": "/user/edit/:id", "component": "/user/edit", "meta": { "title": "修改用户", "hidden": true } }
     ]
   },
   { "path": "/menu", "component": "/menu", "meta": { "title": "菜单列表" } },

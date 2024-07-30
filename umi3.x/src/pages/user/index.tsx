@@ -5,6 +5,7 @@ export default function UserPage() {
     <div>
       <h1>user</h1>
       <button onClick={() => history.push('/user/add')}>add</button>
-    </div>
+      <button onClick={() => history.push('/user/edit/1')}>edit</button>
+      </div>
   );
 }
