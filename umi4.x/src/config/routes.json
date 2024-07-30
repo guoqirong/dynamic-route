@@ -3,7 +3,8 @@
     "path": "/user",
     "routes": [
       { "path": "/user", "component": "/user" },
-      { "path": "/user/add", "component": "/user/add" }
+      { "path": "/user/add", "component": "/user/add" },
+      { "path": "/user/edit/:id", "component": "/user/edit" }
     ]
   },
   { "path": "/menu", "component": "/menu" },
