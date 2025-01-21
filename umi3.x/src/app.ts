@@ -1,4 +1,5 @@
-import { lazy } from "react";
+// import { lazy } from "react";
+import AsyncComponent from "./components/AsyncComponent";
 
 let normalizedRoutes: any;
 
@@ -32,18 +33,29 @@ const mergeRoutes = (routes: any[], parentRoute: { path: any }) => {
         : `${parentRoute?.path || ''}/${route.path}`;
     }
     // 页面组件获取
+    // 旧版3.x动态路由配置要用dynamic
     if (route.component) {
       route.component = ((component) => {
         if (typeof component === 'function') {
           return component;
         }
         route.exact = true;
-        return lazy(() => import('./pages/' +
-          component.substr(component.indexOf('/') + 1)));
-        // return require('./pages/' +
-        //   component.substr(component.indexOf('/') + 1)).default;
+        return AsyncComponent(component);
       })(route.component);
     }
+    // 最新版3.x动态路由配置可以用lazy
+    // if (route.component) {
+    //   route.component = ((component) => {
+    //     if (typeof component === 'function') {
+    //       return component;
+    //     }
+    //     route.exact = true;
+    //     return lazy(() => import('./pages/' +
+    //       component.substr(component.indexOf('/') + 1)));
+    //     // return require('./pages/' +
+    //     //   component.substr(component.indexOf('/') + 1)).default;
+    //   })(route.component);
+    // }
     if (route.routes) {
       route.routes = mergeRoutes(route.routes, route);
     }
